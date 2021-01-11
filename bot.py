@@ -20,7 +20,7 @@ async def weather(ctx, *, query):
         async with aiohttp.ClientSession() as session:
             async with session.get(f'https://api.openweathermap.org/data/2.5/weather?q={query}&appid={os.getenv("APIKEY")}&units=metric') as response:
                 if int(response.status) == 429:
-                    await ctx.send("The api")
+                    await ctx.send("The api has received too many requests and has been rate limited.")
                 elif int(response.status) != 200:
                     await ctx.send("Something went wrong with the request. Please check for any errors in the command sent.")
                     return
